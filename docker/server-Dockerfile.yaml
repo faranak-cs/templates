@@ -1,0 +1,14 @@
+FROM node:10.16-alpine
+
+# Create app directory and use it as the working directory
+RUN mkdir -p /srv/app/server
+WORKDIR /srv/app/server
+
+COPY package.json /srv/app/server
+COPY yarn.lock /srv/app/server
+
+RUN yarn
+
+COPY . /srv/app/server
+
+CMD ["yarn", "start-dev"]
